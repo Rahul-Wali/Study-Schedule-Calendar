@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+    /* General Reset */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: "Poppins", Arial, sans-serif;
+        background: linear-gradient(135deg, #4facfe, #00f2fe);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        color: #333;
+        margin: 0;
+    }
+
+    .signup-container {
+        background-color: #fff;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        max-width: 400px;
+        animation: fadeIn 0.8s ease-in-out;
+    }
+
+    .signup-container h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 28px;
+        color: #444;
+        font-weight: bold;
+        letter-spacing: 1px;
+    }
+
+    .signup-container input,
+    .signup-container select {
+        width: 100%;
+        padding: 12px;
+        margin: 15px 0;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        font-size: 16px;
+        background-color: #f9f9f9;
+        transition: all 0.3s ease;
+    }
+
+    .signup-container input:focus,
+    .signup-container select:focus {
+        border-color: #4facfe;
+        outline: none;
+        box-shadow: 0 0 8px rgba(79, 172, 254, 0.5);
+    }
+
+    .signup-container button {
+        width: 100%;
+        padding: 15px;
+        margin-top: 20px;
+        background: linear-gradient(90deg, #4facfe, #00f2fe);
+        border: none;
+        border-radius: 8px;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        text-transform: uppercase;
+        transition: all 0.3s ease;
+    }
+
+    .signup-container button:hover {
+        background: linear-gradient(90deg, #00f2fe, #4facfe);
+        box-shadow: 0 5px 15px rgba(0, 242, 254, 0.4);
+        transform: translateY(-3px);
+    }
+
+    .login-link {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .login-link a {
+        color: #4facfe;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s ease;
+    }
+
+    .login-link a:hover {
+        color: #007bff;
+        text-decoration: underline;
+    }
+
+    .error-message {
+        color: #d9534f;
+        font-size: 15px;
+        margin: 5px 0px;
+    }
+
+    /* Animation */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+
+</head>
+<body>
+    <div class="signup-container">
+        <h2>Sign Up</h2>
+        <div id="error" class="error-message"></div>
+        <form id="signupForm" action="/signup.html" method="post">
+            <div class="form-group">
+                <label for="userId">User ID:</label>
+                <input type="text" id="userId" name="name" placeholder="Enter your user ID" required>
+                <div id="userIdError" class="error-message"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                <div id="passwordError" class="error-message"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password:</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
+                <div id="confirmPasswordError" class="error-message"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="role">Sign up as:</label>
+                <select id="role" name="role" required>
+                    <option value="Student">Student</option>
+                    <option value="Parent">Parent</option>
+                </select>
+            </div>
+
+            <button type="submit" id="signupBtn">Sign Up</button>
+        </form>
+
+        <div class="login-link">
+            <p>Already have an account? <a href="/login.html">Login here</a></p>
+        </div>
+    </div>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const success = params.get("success");
+        const error = params.get("error");
+
+        if (error) {
+            const errorDiv = document.getElementById("error");
+            errorDiv.textContent = decodeURIComponent(error);
+            errorDiv.style.display = "block"; // Make the error visible
+        }
+
+        if (success) {
+            alert(decodeURIComponent(success)); // Show success popup
+        }
+        // if (error) {
+        //     alert(decodeURIComponent(error)); // Show error popup
+        // }
+    </script>
+</body>
+</html>
